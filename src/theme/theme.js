@@ -35,21 +35,29 @@ const palettes = {
     // veryLightGray: '#F3F4F6',
     // nearWhite: '#F9FAFB',
     background: {
-      default: '#F3F4F6'
+      default: '#F3F4F6',
+      list: '#FFFFFF'
     },
     customColors: {
       header: '#F9FAFB',
       text: '#111827',
       border: '#D1D5DB'
+    },
+    border: {
+      list:'#E5E7EB'
     }
   },
   dark: {
     background: {
-      default: '#121214'
+      default: '#121214',
+      list: '#19191C'
     },
     customColors: {
       header: '#202024',
       text: '#F9FAFB'
+    },
+    border: {
+      list:'#121214'
     }
     // deepRed: '#881337',
     // darkPink: '#9F1239',

@@ -1,5 +1,5 @@
 import { Player } from 'components/player/player'
-import { Playlist } from './playlist/playlist'
+import { Playlist } from 'components/playlist/playlist'
 import { Container } from './styles'
 
 export const MainPage = () => {

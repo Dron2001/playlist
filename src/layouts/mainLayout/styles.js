@@ -6,7 +6,7 @@ export const Container = styled(Box)(() => ({
 
 export const Body = styled(Box)(() => ({
   width: '100%',
-  maxWidth: '980px',
+  maxWidth: '1200px',
   margin: '35px auto',
   padding: '0 30px'
 }))

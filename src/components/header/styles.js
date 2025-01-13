@@ -9,7 +9,7 @@ export const Body = styled(Box)(() => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   width: '100%',
-  maxWidth: '980px',
+  maxWidth: '1200px',
   margin: '0 auto',
   padding: '14.48px 30px'
 }))

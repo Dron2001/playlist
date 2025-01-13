@@ -10,45 +10,57 @@ export const Player = () => {
   const videoNodeRef = useRef(null)
 
   useEffect(() => {
-    const player = videojs(videoNodeRef.current, {
-      controls: true,
-      autoplay: false,
-      preload: 'auto',
-      sources: [{ src: currentVideo, type: 'video/mp4' }]
-    })
+    if (videoNodeRef.current && !playerRef.current) {
+      const player = videojs(videoNodeRef.current, {
+        controls: true,
+        autoplay: false,
+        preload: 'auto',
+        sources: [{ src: currentVideo, type: 'video/mp4' }]
+      })
 
-    const handleVolumeChange = () => setVolume(player.volume())
+      playerRef.current = player
 
-    const handlePlayPause = () => setPlaying(!player.paused())
+      const handleVolumeChange = () => setVolume(player.volume())
+      const handlePlayPause = () => setPlaying(!player.paused())
 
-    player.on('volumechange', handleVolumeChange)
-    player.on('play', handlePlayPause)
-    player.on('pause', handlePlayPause)
+      player.on('volumechange', handleVolumeChange)
+      player.on('play', handlePlayPause)
+      player.on('pause', handlePlayPause)
 
-    playerRef.current = player
-
-    return () => {
-      if (playerRef.current) playerRef.current.dispose()
+      return () => {
+        if (playerRef.current) {
+          playerRef.current.dispose()
+        }
+      }
     }
-  }, [currentVideo, setPlaying, setVolume])
-
-  useEffect(() => {
-    if (playerRef.current) playerRef.current.volume(volume)
-  }, [volume])
+  }, [])
 
   useEffect(() => {
     if (playerRef.current) {
+      const player = playerRef.current
+
+      if (currentVideo !== player.currentSrc()) {
+        player.src({ src: currentVideo, type: 'video/mp4' })
+        player.load()
+      }
+
       if (isPlaying) {
-        playerRef.current.play()
+        player.play()
       } else {
-        playerRef.current.pause()
+        player.pause()
       }
     }
-  }, [isPlaying])
+  }, [currentVideo, isPlaying])
+
+  useEffect(() => {
+    if (playerRef.current) {
+      playerRef.current.volume(volume)
+    }
+  }, [volume])
 
   return (
     <Container>
-      <Video ref={videoNodeRef} className='video-js vjs-default-skin' />
+      <Video ref={videoNodeRef} className="video-js vjs-default-skin" />
     </Container>
   )
 }
