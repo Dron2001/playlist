@@ -1,4 +1,4 @@
-import { Box, styled, Typography } from '@mui/material'
+import { Box, styled, Typography, ToggleButton } from '@mui/material'
 
 export const Container = styled('header')(({ theme }) => ({
   backgroundColor: theme.palette.customColors.header
@@ -18,4 +18,12 @@ export const Logo = styled(Typography)(({ theme }) => ({
   color: theme.palette.customColors.text,
   fontWeight: '600',
   fontSize: '36px'
+}))
+
+export const ToggleButtonStyled = styled(ToggleButton)(() => ({
+  textTransform: 'none',
+
+  svg: {
+    marginRight: '10px'
+  }
 }))
