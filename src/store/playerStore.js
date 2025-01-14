@@ -7,13 +7,15 @@ const videoList = [
   'https://media.xiph.org/tearsofsteel/tears_of_steel_1080p.webm'
 ]
 
-export const usePlayerStore = create((set) => ({
+export const usePlayerStore = create(set => ({
   isPlaying: false,
   volume: 1,
+  isCamera: false,
   currentVideo: videoList[0],
   videoList,
   setPlaying: isPlaying => set({ isPlaying }),
   setVolume: volume => set({ volume }),
-  setCurrentVideo: video => set({ currentVideo: video }),
-  addVideoToList: newVideo => set(state => ({ videoList: [...state.videoList, newVideo] }))
+  setCurrentVideo: currentVideo => set({ currentVideo }),
+  addVideoToList: newVideo => set(state => ({ videoList: [...state.videoList, newVideo] })),
+  setIsCamera: isCamera => set({ isCamera })
 }))

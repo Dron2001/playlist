@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { Switch } from '@mui/material'
 import { usePlayerStore } from 'store/playerStore'
-import { Container, Input, AddButton } from './styles'
+import { Container, Row, Input, AddButton, SwitchContainer, Title } from './styles'
 
 export const Head = () => {
   const [url, setUrl] = useState('')
-  const { addVideoToList  } = usePlayerStore(state => state)
+  const { addVideoToList, isCamera, setIsCamera } = usePlayerStore(state => state)
 
   const isValidUrl = url => {
     try {
@@ -20,15 +21,24 @@ export const Head = () => {
       addVideoToList(url.trim())
       setUrl('')
     } else {
-      alert('Введите корректный URL')
+      alert('Please enter a valid URL')
     }
   }
 
+  const onChangeIsCamera = () => setIsCamera(!isCamera)
+
   return (
     <Container>
-      <Input placeholder='link..' value={url} onChange={e => setUrl(e.target.value)} />
+      <Row>
+        <Input placeholder='link..' value={url} onChange={e => setUrl(e.target.value)} />
 
-      <AddButton variant='contained' onClick={handleAddVideo}>Add</AddButton>
+        <AddButton variant='contained' onClick={handleAddVideo}>Add</AddButton>
+      </Row>
+
+      <SwitchContainer>
+        <Title>Webcam:</Title>
+        <Switch checked={isCamera} onChange={onChangeIsCamera} />
+      </SwitchContainer>
     </Container>
   )
 }
