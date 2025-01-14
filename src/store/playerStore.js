@@ -32,7 +32,8 @@ export const usePlayerStore = create(persist(
     partialize: state => ({
       volume: state.volume,
       isCamera: state.isCamera,
-      currentVideo: state.currentVideo
+      currentVideo: state.currentVideo,
+      videoList: state.videoList
     })
   }
 ))
