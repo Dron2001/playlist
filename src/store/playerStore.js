@@ -17,5 +17,11 @@ export const usePlayerStore = create(set => ({
   setVolume: volume => set({ volume }),
   setCurrentVideo: currentVideo => set({ currentVideo }),
   addVideoToList: newVideo => set(state => ({ videoList: [...state.videoList, newVideo] })),
-  setIsCamera: isCamera => set({ isCamera })
+  setIsCamera: isCamera => set({ isCamera }),
+  playNextVideo: () => set(state => {
+    const currentIndex = state.videoList.indexOf(state.currentVideo)
+    const nextIndex = currentIndex < state.videoList.length - 1 ? currentIndex + 1 : currentIndex
+
+    return { currentVideo: state.videoList[nextIndex] }
+  })
 }))

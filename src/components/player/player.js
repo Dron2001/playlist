@@ -5,7 +5,15 @@ import { usePlayerStore } from 'store/playerStore'
 import { Container, Video } from './styles'
 
 export const Player = () => {
-  const { isPlaying, volume, currentVideo, setPlaying, setVolume } = usePlayerStore(state => state)
+  const {
+    isPlaying,
+    volume,
+    currentVideo,
+    setPlaying,
+    setVolume,
+    playNextVideo
+  } = usePlayerStore(state => state)
+
   const playerRef = useRef(null)
   const videoNodeRef = useRef(null)
 
@@ -21,11 +29,19 @@ export const Player = () => {
       playerRef.current = player
 
       const handleVolumeChange = () => setVolume(player.volume())
-      const handlePlayPause = () => setPlaying(!player.paused())
+
+      const handlePlayPause = () => {
+        if (player.ended()) return
+
+        setPlaying(!player.paused())
+      }
+
+      const handleVideoEnd = () => playNextVideo()
 
       player.on('volumechange', handleVolumeChange)
       player.on('play', handlePlayPause)
       player.on('pause', handlePlayPause)
+      player.on('ended', handleVideoEnd)
 
       return () => {
         if (playerRef.current) {
