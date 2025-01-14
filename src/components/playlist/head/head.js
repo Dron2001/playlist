@@ -5,7 +5,7 @@ import { Container, Row, Input, AddButton, SwitchContainer, Title } from './styl
 
 export const Head = () => {
   const [url, setUrl] = useState('')
-  const { addVideoToList, isCamera, setIsCamera } = usePlayerStore(state => state)
+  const { addVideoToList, isCamera, setIsCamera, setPlaying } = usePlayerStore(state => state)
 
   const isValidUrl = url => {
     try {
@@ -25,7 +25,10 @@ export const Head = () => {
     }
   }
 
-  const onChangeIsCamera = () => setIsCamera(!isCamera)
+  const onChangeIsCamera = () => {
+    setIsCamera(!isCamera)
+    setPlaying(false)
+  }
 
   return (
     <Container>
