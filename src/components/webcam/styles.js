@@ -13,3 +13,25 @@ export const Video = styled('video')({
   height: '100%',
   objectFit: 'cover'
 })
+
+export const Buttons = styled(Box)(() => ({
+  marginTop: '20px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
+}))
+
+export const IconButton = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+
+  '&:hover': {
+    opacity: 0.5
+  },
+
+  '&:last-child': {
+    marginLeft: '20px'
+  }
+}))

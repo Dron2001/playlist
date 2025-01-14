@@ -16,6 +16,12 @@ const baseTheme = {
         },
         li: {
           listStyle: 'none'
+        },
+        'html, body, #root': {
+          height: '100%'
+        },
+        '#root': {
+          display: 'flex'
         }
       }
     }

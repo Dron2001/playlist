@@ -1,7 +1,8 @@
 import { styled, Box } from '@mui/material'
 
 export const Container = styled(Box)(() => ({
-  height: '100vh'
+  flex: 1,
+  overflowY: 'auto'
 }))
 
 export const Body = styled(Box)(() => ({
