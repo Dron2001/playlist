@@ -1,18 +1,13 @@
 import { usePlayerStore } from 'store/playerStore'
-import { Container, VideoContainer, Thumbnail, Title } from './styles'
+import { Video } from './video/video'
+import { Container } from './styles'
 
 export const List = () => {
-  const { currentVideo, videoList, setCurrentVideo } = usePlayerStore(state => state)
+  const { videoList } = usePlayerStore(state => state)
 
   return (
     <Container>
-      {videoList.map((source, index) => (
-        <VideoContainer key={index} onClick={() => setCurrentVideo(source)} isactive={currentVideo === source ? 1 : 0}>
-          <Thumbnail src={source} muted preload='metadata' />
-
-          <Title>Video {index + 1}</Title>
-        </VideoContainer>
-      ))}
+      {videoList.map((video, index) => <Video key={index} video={video} />)}
     </Container>
   )
 }

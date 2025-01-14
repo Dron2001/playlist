@@ -23,7 +23,7 @@ export const Player = () => {
         controls: true,
         autoplay: false,
         preload: 'auto',
-        sources: [{ src: currentVideo, type: 'video/mp4' }]
+        sources: [{ src: currentVideo.source, type: 'video/mp4' }]
       })
 
       playerRef.current = player
@@ -55,8 +55,8 @@ export const Player = () => {
     if (playerRef.current) {
       const player = playerRef.current
 
-      if (currentVideo !== player.currentSrc()) {
-        player.src({ src: currentVideo, type: 'video/mp4' })
+      if (currentVideo.source !== player.currentSrc()) {
+        player.src({ src: currentVideo.source, type: 'video/mp4' })
         player.load()
       }
 
