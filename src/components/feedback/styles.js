@@ -27,8 +27,8 @@ export const AddButton = styled(Button)(() => ({
   textTransform: 'none'
 }))
 
-export const Avatar = styled(Box)(() => ({
-  backgroundColor: 'red',
+export const Avatar = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.customColors.text,
   width: '40px',
   height: '40px',
   borderRadius: '50%'
