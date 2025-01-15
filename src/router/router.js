@@ -9,5 +9,6 @@ export const router = createBrowserRouter([
     children: [
       { path: '/', element: <MainPage /> }
     ]
-  }
+  },
+  { basename: '/playlist' }
 ])
